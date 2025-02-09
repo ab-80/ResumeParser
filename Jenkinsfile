@@ -16,8 +16,8 @@ pipeline {
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [[$class: 'WipeWorkspace']], // Ensures a fresh pull
                         userRemoteConfigs: [[
-                            url: 'https://github.com/ab-80/ResumeParser.git',
-                            credentialsId: ''
+                            url: 'https://github.com/ab-80/ResumeParser.git'
+                            //credentialsId: ''
                         ]]
                     ])
                     echo "Building branch: ${branchName}"
