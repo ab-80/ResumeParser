@@ -9,9 +9,10 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
+                def branchName = env.GIT_BRANCH
                     checkout([
                         $class: 'GitSCM',
-                        branches: [[name: '*/*']],
+                        branches: [[name: "*/${branchName}"]],
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [[$class: 'WipeWorkspace']], // Ensures a fresh pull
                         userRemoteConfigs: [[
@@ -19,6 +20,7 @@ pipeline {
                             credentialsId: ''
                         ]]
                     ])
+                    echo "Building branch: ${branchName}"
                 }
             }
         }
