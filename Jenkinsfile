@@ -8,7 +8,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                script {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/*']],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [[$class: 'WipeWorkspace']], // Ensures a fresh pull
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/ab-80/ResumeParser.git',
+                            credentialsId: ''
+                        ]]
+                    ])
+                }
             }
         }
 
