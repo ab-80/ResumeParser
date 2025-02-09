@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                def branchName = env.GIT_BRANCH
+                def branchName = env.GIT_BRANCH : 'main' 
                     checkout([
                         $class: 'GitSCM',
                         branches: [[name: "*/${branchName}"]],
