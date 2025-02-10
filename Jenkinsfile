@@ -17,7 +17,7 @@ pipeline {
 
         stage('Setup .NET SDK') {
             steps {
-                sh 'dotnet --version || curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel $DOTNET_VERSION'
+                sh 'dotnet --version' // || curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel $DOTNET_VERSION'
             }
         }
 
