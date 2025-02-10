@@ -9,18 +9,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                def branchName = env.GIT_BRANCH ?: 'main' 
-                    checkout([
-                        $class: 'GitSCM',
-                        branches: [[name: "*/${branchName}"]],
-                        doGenerateSubmoduleConfigurations: false,
-                        extensions: [[$class: 'WipeWorkspace']], // Ensures a fresh pull
-                        userRemoteConfigs: [[
-                            url: 'https://github.com/ab-80/ResumeParser.git'
-                            //credentialsId: ''
-                        ]]
-                    ])
-                    echo "Building branch: ${branchName}"
+                    echo "Building branch: ${env.BRANCH_NAME}"
+                    checkout scm  // Automatically checks out the correct branch
                 }
             }
         }
